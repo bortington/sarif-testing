@@ -27,7 +27,7 @@ jobs:
         run: |
           dotnet new tool-manifest
           dotnet tool install Sarif.PatternMatcher.Cli --local
-          dotnet spam analyze . --output "scan.sarif" --force --dynamic-validation --insert "RegionSnippets;ContextRegionSnippets" -d "sarif-pattern-matcher\Src\Plugins\Security\SEC101.SecurePlaintextSecrets.json"
+          dotnet tool run spam -- analyze . --output "scan.sarif" --force --dynamic-validation --insert "RegionSnippets;ContextRegionSnippets" -d "sarif-pattern-matcher\Src\Plugins\Security\SEC101.SecurePlaintextSecrets.json"
 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2
