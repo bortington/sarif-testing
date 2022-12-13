@@ -1,0 +1,20 @@
+on:
+  push:
+    branches: [main]
+
+
+jobs:
+  scan:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+      - shell: bash
+        run: |
+          dotnet new tool-manifest
+          dotnet tool install Sarif.PatternMatcher.Cli --local
+          
+          dotnet spam analyze . --output "scan.sarif" --force --dynamic-validation --insert "RegionSnippets;ContextRegionSnippets" -d "C:\Alek\ThirdParty\sarif-pattern-matcher\Src\Plugins\Security\SEC101.SecurePlaintextSecrets.json"
