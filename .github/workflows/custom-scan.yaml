@@ -25,6 +25,9 @@ jobs:
           
       - shell: bash
         run: |
+          pwd
+          ls -d */
+          
           dotnet new tool-manifest
           dotnet tool install Sarif.PatternMatcher.Cli --local
           dotnet tool run spam analyze "./repo" -r --output "${{ github.workspace }}/scan.sarif" --force --dynamic-validation --insert "RegionSnippets;ContextRegionSnippets" -d "sarif-pattern-matcher\Src\Plugins\Security\SEC101.SecurePlaintextSecrets.json"
