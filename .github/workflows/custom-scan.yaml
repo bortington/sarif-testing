@@ -32,7 +32,7 @@ jobs:
           dotnet tool install Sarif.PatternMatcher.Cli --local
           
           cd repo
-          dotnet tool run spam analyze . -r --output "${{ github.workspace }}/scan.sarif" --force --dynamic-validation --insert "RegionSnippets;ContextRegionSnippets;FlattenedMessages" -d "../sarif-pattern-matcher/Src/Plugins/Security/SEC101.SecurePlaintextSecrets.json"
+          dotnet tool run spam analyze . --deny-regex "\\\.git\\\\" -r --output "${{ github.workspace }}/scan.sarif" --force --dynamic-validation --insert "RegionSnippets;ContextRegionSnippets;FlattenedMessages" -d "../sarif-pattern-matcher/Src/Plugins/Security/SEC101.SecurePlaintextSecrets.json"
           cd ..
           
       - uses: actions/upload-artifact@v3
