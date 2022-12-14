@@ -14,6 +14,8 @@ All secrets are either generated or modified, and originals are no longer valid
 
 I once had a PAT whose value is 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
 
+Another oopsie: ghp_RqviGaIw6NW5CJgMWsAB0HiqjVbkgY3xASDF
+
 I then made a fine grained pat with no permissions. Its name was 
 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
 
