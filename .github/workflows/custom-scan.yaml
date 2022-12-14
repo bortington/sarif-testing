@@ -34,7 +34,12 @@ jobs:
           cd repo
           dotnet tool run spam analyze . -r --output "${{ github.workspace }}/scan.sarif" --force --dynamic-validation --insert "RegionSnippets;ContextRegionSnippets;FlattenedMessages" -d "../sarif-pattern-matcher/Src/Plugins/Security/SEC101.SecurePlaintextSecrets.json"
           cd ..
-
+          
+      - uses: actions/upload-artifact@v3
+        with:
+          name: analysis
+          path: scan.sarif
+    
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2
         with:
